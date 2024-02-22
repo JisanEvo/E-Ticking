@@ -1,13 +1,29 @@
+
 function calculateTotalPrice() {
     const totalPriceElement = document.getElementById("total-price");
 
     const totalSeatsConfirmed = document.querySelectorAll("#seat-confirm p").length;
     const totalPrice = 550 * totalSeatsConfirmed;
-    totalPriceElement.innerText =totalPrice;
-    totalPriceElement.innerText=totalPrice;
 
+    // Clear the totalPriceElement before adding new content
+    totalPriceElement.innerHTML = '';
 
+    // Display the total price
+
+    const newPrice=document.getElementById("total-price")
+    // console.log(newPrice)
+    // newPrice.innerText=`${totalPrice.toFixed(2)}`
+    const h5 = document.createElement("h5");
+    h5.innerText = totalPrice;
+    totalPriceElement.appendChild(h5);
+
+    // return totalPrice;
+    document.getElementById("grand-total").innerText = `Grand Total: ${totalPrice.toFixed(2)}`;
 }
+
+
+
+
 
 function checkAndDisableSeats() {
     if (titleCount >= 5) {
@@ -25,7 +41,7 @@ for (let index = 0; index < seats.length; index++) {
         const title = seat.innerText;
 
         const seatConfirm = document.getElementById("seat-confirm");
-
+        console.log(seatConfirm)
         const p = document.createElement("p");
         p.innerText = titleCount + ". " + title;
         seatConfirm.appendChild(p);
@@ -35,53 +51,90 @@ for (let index = 0; index < seats.length; index++) {
         calculateTotalPrice();
 
 
-        const classic=document.getElementById("classic")
+        const classic = document.getElementById("classic")
 
-                 const h2=document.createElement("h2");
-                h2.innerText=`Economy`;
-                classic.appendChild(h2);
+        const h2 = document.createElement("h2");
+        h2.innerText = `Economy`;
+        classic.appendChild(h2);
 
-                 const price=document.getElementById("price");
-                 const h3=document.createElement("h3");
-                h3.innerText=550;
-               price.appendChild(h3)
+        const price = document.getElementById("price");
+        const h3 = document.createElement("h3");
+        h3.innerText = 550;
+        price.appendChild(h3);
+        const seatleft = document.getElementById("seat-left").innerText;
+
+        const totals = parseFloat(seatleft);
+        //    console.log(typeof totals)
+        const totalSeatsConfirmed = document.querySelectorAll("#seat-confirm p").length;
+
+
+        const totalseat = 8 - totalSeatsConfirmed;
+
+        // console.log(totalseat)
+
+        const hull = document.getElementById("hun");
+
+        // Find existing h6 element within hull
+        let h6 = hull.querySelector("h6");
+
+        // If h6 already exists, update its text content
+
+        if (h6) {
+            h6.innerText = `Seat Left: ${totalseat}`;
+        } else {
+            // Otherwise, create a new h6 element and append it to hull
+            h6 = document.createElement("h6");
+            h6.innerText = `Seat Left: ${totalseat}`;
+            hull.appendChild(h6);
+
+            // console.log(removeElement.innerText);
+            // if (removeElement{
+            //     removeElement.innerText
+            // })
+}
+
+const removeElement = document.getElementById("seat-left");
+removeElement.innerText=""
+
+        // Remove any other h6 elements within hull
+        // const otherH6Elements = hull.querySelectorAll("seat-left");
+        // otherH6Elements.forEach(element => {
+        //     if (element !== h6) {
+        //         hull.removeChild(span);
+        //     }
+        // });
+
+
+        // const seatleft = manage.innerText; // Access the seat-left directly from manage
+
+        // const totals = parseFloat(seatleft);
+        // const totalSeatsConfirmed = document.querySelectorAll("#seat-confirm p").length;
+
+        // const totalseat = totals - totalSeatsConfirmed;
+
+        // Update the existing h6 element text
+        // const h6 = manage.querySelector("h6");
+        // h6.innerText = totalseat;
     });
 }
 
 
 
 
-// let isButtonClicked = false;
-
-// function disableButton() {
-//     const button = document.getElementsByClassName("seat");
-//     button.disabled = true;
-// }
-
-// const button = document.getElementById("seat");
-// button.addEventListener("click", function () {
-//     if (!isButtonClicked) {
-
-
-//         isButtonClicked = true;
-//         disableButton();
-//     }
-// });
-
-
 
 const btn = document.getElementById("apply-btn");
 btn.addEventListener("click", function () {
     console.log(`clicked`);
-    // ইনপুট ফিল্ড থেকে মান পাওয়া
+
     const cuponElement = document.getElementById("input-field");
     const cupons = cuponElement.value;
-    // স্পেস সরানো
+
     const code = cupons.split(" ").join("");
 
-    // যদি কোড "NEW15" হয়
+    const price = parseFloat(document.getElementById("total-price").innerText);
+
     if (code === "NEW15" || code === "Couple20") {
-        const price = parseFloat(document.getElementById("total-price").innerText);
+
         let discount;
         if (code === "NEW15") {
             discount = price * 0.15;
@@ -91,35 +144,43 @@ btn.addEventListener("click", function () {
         const discounted = price - discount;
 
         const grand = document.getElementById("grand-total");
-        grand.innerText = discounted.toFixed(2); // মোট দাম আপডেট করুন
+        grand.innerText =`Grand Total: ${discounted.toFixed(2)}`;
 
-        // নতুন ডিসকাউন্ট এলিমেন্ট তৈরি করুন এবং যোগ করুন
+
         const h5 = document.createElement("h5");
-        h5.innerText = `Discounted Price: ${discounted.toFixed(2)}`;
+        // h5.innerText = `Discounted Price: ${discounted.toFixed(2)}`;
         grand.appendChild(h5);
 
-        // ইনপুট ফিল্ড রিসেট করুন
+
         cuponElement.value = "";
     }
 });
-// document.getElementById("scroll-button").addEventListener("click", function() {
-//     // Scroll to the new section
-//     document.getElementById("ticket-counter").scrollIntoView({ behavior: "smooth" });
-// });
-const btnscroll=document.getElementById("scroll-button").addEventListener("click", function() {
-    // Scroll to the new section
-`clicked`
+
+
+
+
+
+
+
+
+
+const btnscroll = document.getElementById("scroll-button").addEventListener("click", function () {
+
+    `clicked`
 });
+
+
 
 var buttons = document.getElementsByClassName('seat');
 
-// Loop through each button and add event listener
+
 for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() {
-        // Inside this function, 'this' refers to the clicked button
-        // Change background color to red when button is clicked
+    buttons[i].addEventListener('click', function (event) {
+
         this.style.backgroundColor = `#1DD100`;
+
+
+        this.disabled = true;
+
     });
 }
-
-

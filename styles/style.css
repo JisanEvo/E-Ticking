@@ -2,6 +2,31 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-.font-raleway{
+.font-raleway {
     font-family: "Raleway", sans-serif;
 }
+
+
+#moda{
+    /* visibility: hidden; */
+    width: 400px;
+    text-align: center;
+    background: gainsboro;
+    position: absolute;
+    border-radius: 6px;
+    left: 50%;
+    top: 0;
+    /* transform: translate(-50%, -50%)scale(0.1); */
+    padding: 0 30px 30px;
+    color: #333;
+    /* visibility: hidden; */
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+visibility: visible;
+top: 50%;
+transform: translate(-50%, -50%)scale(1);
+
+}
+.sucess {}
